@@ -1,0 +1,148 @@
+# Warehouse Data Compressor using N-ary Huffman Tree
+
+## Project Overview
+
+This project implements fundamental data structures and applies them to build a multi-branch (N-ary) Huffman Tree for compressing warehouse data.
+
+The system simulates a real-world scenario where product information (name + attributes) is encoded into a compressed format and later decoded back to its original form.
+
+---
+
+## Objectives
+
+* Implement core data structures from scratch:
+
+  * Hash Map
+  * Heap
+* Apply these structures to:
+
+  * Build an N-ary Huffman Tree
+  * Develop a data compression system
+* Reinforce advanced C++ programming (C++17)
+
+---
+
+## System Architecture
+
+### 1. Hash Map (`xMap`)
+
+* Generic implementation using templates
+* Collision handling via Doubly Linked List (Separate Chaining)
+* Supports:
+
+  * `put`, `get`, `remove`
+  * `containsKey`, `containsValue`
+  * `rehash`, `load factor control`
+
+---
+
+### 2. Heap (`Heap`)
+
+* Dynamic array-based implementation
+* Supports both Min-Heap and Max-Heap
+* Core operations:
+
+  * `push`, `pop`, `peek`
+  * `heapify` (O(n))
+* Maintains heap property using:
+
+  * `reheapUp`
+  * `reheapDown`
+
+---
+
+### 3. N-ary Huffman Tree
+
+* Generalization of binary Huffman Tree
+* Each internal node can have N children
+* Key features:
+
+  * Handles dummy nodes to satisfy:
+
+    ```
+    (L - 1) mod (N - 1) = 0
+    ```
+  * Uses Heap to efficiently build tree
+  * Generates prefix codes for characters
+
+---
+
+### 4. Inventory Compressor
+
+* Converts product data into string format:
+
+  ```
+  product_name:(attr1:value1),(attr2:value2),...
+  ```
+* Workflow:
+
+  1. Build frequency table
+  2. Construct Huffman Tree
+  3. Generate encoding table
+  4. Encode & decode data
+
+---
+
+## ⚙️ Technologies Used
+
+* Language: C++ (C++17 standard)
+* Compiler: `g++`
+* Data Structures:
+
+  * Doubly Linked List
+  * Hash Table
+  * Heap
+  * Tree
+
+---
+
+## Features
+
+* Generic and reusable data structures
+* Efficient collision handling in HashMap
+* Heap-based priority queue for Huffman construction
+* N-ary Huffman encoding (optimized compression)
+* Full encode → decode pipeline
+* Memory management with function pointers
+
+---
+
+## Project Structure
+
+```
+/include
+ ├── list/              # Linked list implementations
+ ├── hash/              # HashMap (xMap)
+ ├── heap/              # Heap implementation
+ └── app/
+      ├── huffman_tree.h
+      └── inventory_compressor.h
+
+/src
+ ├── main.cpp
+ └── test/
+
+```
+
+---
+
+## 🔄 Workflow
+
+1. Build custom data structures (List, HashMap, Heap)
+2. Construct Huffman Tree from character frequencies
+3. Generate encoding table
+4. Encode product data
+5. Decode to verify correctness
+
+---
+
+## Compilation
+
+```bash
+g++ -g -I include -I src -std=c++17 src/test/* src/main.cpp -o main
+```
+
+
+
+
+
